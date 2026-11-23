@@ -1,27 +1,145 @@
-body {
-  font-family: Arial, sans-serif;
+﻿:root {
+  color-scheme: light;
+  --ink: #38262b;
+  --muted: #69545b;
+  --rose: #923950;
+  --rose-dark: #762b3f;
+  --paper: #fffaf5;
+  --line: #dec5c8;
+  font-family: system-ui, sans-serif;
+  color: var(--ink);
+  background: #f9eeea;
 }
 
-.container {
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 5vw, 3rem);
+  background:
+    radial-gradient(ellipse at 15% 15%, #f0cbd2, transparent 60%),
+    radial-gradient(ellipse at 90% 85%, #efd7be, transparent 55%);
+}
+
+.card {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 36rem);
+  padding: clamp(1.25rem, 5vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: 1.75rem;
+  background: var(--paper);
+  box-shadow: 0 1rem 3rem #6b35301c;
   text-align: center;
-  margin-top: 100px;
+  overflow-wrap: anywhere;
+}
+
+.seal {
+  display: inline-grid;
+  place-items: center;
+  width: 3.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--rose);
+  background: #f7e3e6;
+  font-size: 1.6rem;
+}
+
+h1, h2, h3, p { margin: 0; }
+h1, h2, .preview h3 { font-family: Georgia, serif; font-weight: 400; }
+h1, #titulo-carta {
+  margin: .8rem auto 0;
+  max-width: 17ch;
+  font-size: clamp(2rem, 7.5vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: .65rem;
+  width: min(100%, 23rem);
+  min-height: 8rem;
+  margin: .5rem auto 0;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 18px;
-  margin: 10px;
+  min-height: 44px;
+  padding: .6rem .85rem;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  background: var(--rose);
+  color: white;
+  font: 700 1rem system-ui, sans-serif;
   cursor: pointer;
-  border: none;
-  border-radius: 5px;
 }
 
-#simButton {
-  background-color: #4CAF50;
-  color: white;
+button:hover { background: var(--rose-dark); }
+button.secondary {
+  color: var(--rose-dark);
+  background: #faedee;
+  border-color: var(--line);
+  transition: transform 180ms ease-out;
+}
+button.secondary:hover { background: #f3dce0; }
+
+:focus-visible {
+  outline: 3px solid var(--rose-dark);
+  outline-offset: 4px;
 }
 
-#naoButton {
-  background-color: #f44336;
-  color: white;
+.letter, .signature {
+  margin: 1rem 0;
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+.signature { color: var(--rose-dark); font-style: italic; }
+
+#titulo-musica { margin-top: 1.5rem; font-size: 1rem; }
+.artist, .hint, .status { color: var(--muted); font-size: .875rem; }
+audio { width: min(100%, 22rem); margin: .75rem auto 0; display: block; }
+
+details { border-top: 1px solid var(--line); margin-top: 1.25rem; padding-top: 1.25rem; }
+summary { color: var(--rose-dark); cursor: pointer; width: fit-content; margin-inline: auto; }
+form { display: grid; gap: .85rem; margin-top: 1rem; text-align: left; }
+label { display: grid; gap: .35rem; font-weight: 600; }
+input, textarea {
+  width: 100%;
+  border: 1px solid #ad8b91;
+  border-radius: .65rem;
+  padding: .65rem;
+  font: inherit;
+  color: var(--ink);
+  background: white;
+}
+textarea { resize: vertical; }
+.status:empty { display: none; }
+#aviso-musica:not(:empty) { margin-top: .65rem; }
+.preview { padding: 1rem; border-radius: .85rem; background: #faedee; }
+.preview h2 { font: 600 .875rem system-ui, sans-serif; color: var(--muted); margin-bottom: .5rem; }
+.preview h3 { font-size: 1.45rem; }
+.preview .letter, .preview .signature { margin: .45rem 0 0; }
+
+#coracoes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; border-radius: inherit; }
+.heart {
+  position: absolute;
+  left: var(--left);
+  bottom: -1.5rem;
+  color: #b84e67;
+  animation: rise 1.5s ease-out var(--delay) both;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(0) rotate(-15deg); }
+  25% { opacity: .7; }
+  to { opacity: 0; transform: translateY(-24rem) rotate(30deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  button.secondary { transition: none; }
+  .heart { display: none; }
 }
