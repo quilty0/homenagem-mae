@@ -1,17 +1,59 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+﻿<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>É Minha Mãe a Melhor do Mundo?</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Uma pequena homenagem para a melhor mãe do mundo.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Para a melhor mãe do mundo">
+  <meta property="og:description" content="Uma pequena homenagem em forma de carta e música.">
+  <meta name="theme-color" content="#f9eeea">
+  <title>Para a melhor mãe do mundo</title>
+  <link rel="icon" href="assets/coracao.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="container">
-    <h1>É Minha Mãe a Melhor do Mundo?</h1>
-    <button id="simButton">Sim</button>
-    <button id="naoButton">Não</button>
-  </div>
-  <script src="script.js"></script>
+  <main class="card">
+    <section id="pergunta" aria-labelledby="titulo">
+      <span class="seal" aria-hidden="true">♥</span>
+      <h1 id="titulo">Minha mãe é a melhor do mundo?</h1>
+      <div class="choices">
+        <button id="sim" type="button">Sim!</button>
+        <button id="nao" class="secondary" type="button">Não</button>
+      </div>
+    </section>
+
+    <section id="homenagem" aria-labelledby="titulo-carta" hidden>
+      <div id="coracoes" aria-hidden="true"></div>
+      <span class="seal" aria-hidden="true">♥</span>
+      <h2 id="titulo-carta" tabindex="-1">Para a melhor mãe do mundo</h2>
+      <p id="dedicatoria" class="letter">Você é a melhor mãe do mundo e eu te amo muito!</p>
+      <p id="assinatura" class="signature" hidden></p>
+      <h3 id="titulo-musica">Como é Grande o Meu Amor por Você</h3>
+      <p class="artist">Roberto Carlos</p>
+      <audio id="musica" controls preload="none" aria-labelledby="titulo-musica"></audio>
+      <p id="aviso-musica" class="status" role="status"></p>
+    </section>
+
+    <details id="criador">
+      <summary>Criar minha homenagem</summary>
+      <form id="formulario">
+        <label>Nome da mãe <input name="mae" maxlength="60"></label>
+        <label>Assinatura <input name="de" maxlength="60"></label>
+        <label>Dedicatória <textarea name="msg" rows="4" maxlength="600"></textarea></label>
+        <p class="hint">Quem tiver o link poderá ler a dedicatória.</p>
+        <section class="preview" aria-labelledby="titulo-previa">
+          <h2 id="titulo-previa">Prévia da carta</h2>
+          <h3 id="previa-titulo"></h3>
+          <p id="previa-texto" class="letter"></p>
+          <p id="previa-assinatura" class="signature" hidden></p>
+        </section>
+        <button type="submit">Copiar link</button>
+        <p id="aviso-link" class="status" role="status"></p>
+        <label id="link-manual" hidden>Link da homenagem <input id="link" type="url" readonly></label>
+      </form>
+    </details>
+  </main>
 </body>
 </html>
